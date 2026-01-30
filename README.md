@@ -60,7 +60,7 @@ Place 52 card images (71×96px recommended) in `assets/cards/` and a card back i
 - **Set:** 3+ cards of same rank (e.g., 7♥ 7♠ 7♦)
 - **Run:** 3+ consecutive cards of same suit (e.g., 4♠ 5♠ 6♠)
 
-**Win condition:** All cards form melds, OR total deadwood ≤ 1 point
+**Win condition:** Fewer than 2 cards unmelded AND total deadwood < 14 points (e.g., all cards melded, or 1 King remaining)
 
 **Card values:** A=1, 2-9=face value, T=10, J=11, Q=12, K=13
 
@@ -121,8 +121,8 @@ Settings are currently hard-coded in source files:
 
 | Setting | Default | Location |
 |---------|---------|----------|
-| Server Port | 65432 | `server.py` line 51 |
-| Server Address | 0.0.0.0 | `server.py` line 50 |
+| Server Address | 0.0.0.0 | `server.py` line 55 |
+| Server Port | 65432 | `server.py` line 56 |
 | Card Size | 71×96px | `client.py` |
 
 To customize, edit the values directly in the source files.
@@ -174,7 +174,7 @@ TCP messages use length-prefixed format (4-byte header + payload):
 | `@DRAWING` | Server→Client | `@DRAWING` | Draw phase (enable input) |
 | `@DROPPING` | Server→Client | `@DROPPING` | Drop phase (enable input) |
 | `@IDLE` | Server→Client | `@IDLE` | Waiting (disable input) |
-| `@READY` | Client→Server | `@READY` | Ready for game start |
+| `@READY` | Client→Server | `@READY;` | Ready for game start |
 | `@DRAW` | Client→Server | `@DRAW STOCK/DISCARD` | Draw from pile |
 | `@DROP` | Client→Server | `@DROP AS` | Drop card to discard |
 | `@END` | Bidirectional | `@END` | Declare/notify game end |
@@ -202,7 +202,7 @@ TCP messages use length-prefixed format (4-byte header + payload):
 **Deadwood Calculation:**
 ```python
 # Sum card values of non-melded cards
-# Win if total ≤ 1 point
+# Win if fewer than 2 unmelded cards AND total < 14 points
 ```
 
 ### Dependencies
