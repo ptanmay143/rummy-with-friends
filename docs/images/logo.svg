@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Rummy With Friends logo">
+  <defs>
+    <!-- Background: deep indigo to navy gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#3730A3"/>
+    </linearGradient>
+    <!-- Subtle drop shadow for front card depth -->
+    <filter id="fs" x="-25%" y="-15%" width="150%" height="135%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e1b4b" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded-square app icon background -->
+  <rect width="256" height="256" rx="52" ry="52" fill="url(#bg)"/>
+
+  <!-- Back card: rotated -18° from pivot below cards, ghost opacity -->
+  <g transform="rotate(-18, 128, 192)">
+    <rect x="92" y="62" width="72" height="102" rx="11" ry="11" fill="white" opacity="0.22"/>
+  </g>
+
+  <!-- Middle card: upright, mid opacity -->
+  <rect x="92" y="62" width="72" height="102" rx="11" ry="11" fill="white" opacity="0.52"/>
+
+  <!-- Front card: rotated +18°, solid white, pink heart, elevated by shadow -->
+  <g transform="rotate(18, 128, 192)">
+    <g filter="url(#fs)">
+      <!-- Card face -->
+      <rect x="92" y="62" width="72" height="102" rx="11" ry="11" fill="white"/>
+      <!-- Heart symbol: geometric cubic-bezier construction, centered in card -->
+      <!-- Card center: (128, 113). Heart spans y 98–134, x 106–150. -->
+      <path d="M128,134
+               C111,123 105,111 111,103
+               C114,98 121,98 128,105
+               C135,98 142,98 145,103
+               C151,111 145,123 128,134 Z"
+            fill="#F472B6"/>
+      <!-- Small corner pip: top-left heart (scaled 0.28×) -->
+      <path d="M99,77
+               C96,75 95,73 97,71
+               C98,70 100,70 101,72
+               C102,70 104,70 105,71
+               C107,73 106,75 101,78
+               C101,78 99,77 99,77 Z"
+            fill="#F472B6"/>
+      <!-- Small corner pip: bottom-right heart (rotated 180°) -->
+      <path d="M157,149
+               C160,151 161,153 159,155
+               C158,156 156,156 155,154
+               C154,156 152,156 151,155
+               C149,153 150,151 155,148
+               C155,148 157,149 157,149 Z"
+            fill="#F472B6"/>
+    </g>
+  </g>
+</svg>
